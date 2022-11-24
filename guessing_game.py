@@ -1,10 +1,25 @@
 import random
 
 
-def guessing_game():
-    num = random.randint(1, 101)
+def user_guess():
     while True:
-        guess = int(input('Guess between 1 and 100: '))
+        try:
+            num = int(input('Guess between 1 and 100: '))
+        except ValueError:
+            print('Number ouf of range')
+            continue
+        if int(num) not in range(1, 101):
+            print('Number ouf of range')
+            continue
+        else:
+            print(f'Your number is {num}')
+            return int(num)
+
+
+def guessing_game():
+    num = random.randint(1, 100)
+    while True:
+        guess = user_guess()
         if guess == num:
             print('Congrats')
             break
